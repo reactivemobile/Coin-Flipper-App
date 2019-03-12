@@ -40,3 +40,8 @@ build/
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/.name
 .idea/artifacts/dist_auto_*
+/.idea/misc.xml
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
+/.idea/caches/
+/.idea/codeStyles/
