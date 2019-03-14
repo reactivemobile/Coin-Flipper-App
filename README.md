@@ -1,1 +1,1 @@
-# WhiteLabelApp
+# Reactive Mobile White Label App
