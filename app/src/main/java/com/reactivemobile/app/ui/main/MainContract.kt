@@ -2,6 +2,7 @@ package com.reactivemobile.app.ui.main
 
 import com.reactivemobile.app.data.model.Post
 import com.reactivemobile.app.ui.base.BaseContract
+import io.reactivex.disposables.Disposable
 
 class MainContract {
     interface View : BaseContract.View {
@@ -9,6 +10,6 @@ class MainContract {
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun handleButtonClicked()
+        fun handleButtonClicked(): Disposable?
     }
 }
