@@ -1,3 +1,3 @@
 package com.reactivemobile.app.data.model
 
-class Post(val title: String)
+data class Monarch(val nm: String)

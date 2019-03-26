@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reactivemobile.app.App
 import com.reactivemobile.app.R
-import com.reactivemobile.app.data.model.Post
+import com.reactivemobile.app.data.model.Monarch
+
 import com.reactivemobile.app.ui.main.adapter.MainAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
@@ -53,7 +55,11 @@ class MainFragment : Fragment(), MainContract.View {
         recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
-    override fun showPosts(posts: List<Post>) {
-        recycler_view.adapter = MainAdapter(posts)
+    override fun showCountries(responseItems: List<Monarch>) {
+        recycler_view.adapter = MainAdapter(responseItems)
+    }
+
+    override fun showError() {
+        Toast.makeText(requireContext(), "Error loading transactions", Toast.LENGTH_SHORT).show()
     }
 }
