@@ -7,5 +7,8 @@ class BaseContract {
         fun viewReady()
     }
 
-    interface View
+    interface View {
+        fun showLoading()
+        fun hideLoading()
+    }
 }

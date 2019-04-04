@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
@@ -60,6 +62,14 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showError() {
-        Toast.makeText(requireContext(), "Error loading transactions", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Error loading Data", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showLoading() {
+        loading_view.visibility = VISIBLE
+    }
+
+    override fun hideLoading() {
+        loading_view.visibility = GONE
     }
 }

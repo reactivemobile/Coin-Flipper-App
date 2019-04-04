@@ -12,11 +12,21 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
     override fun handleButtonClicked(): Disposable? {
         return repository.fetch()
             .onErrorReturn { emptyList() }
-            .doOnError { showError() }
-            .subscribe(this::showCountries)
+            .doOnSubscribe { showLoading() }
+            .doOnComplete { hideLoading() }
+            .doOnNext(this::showResult)
+            .subscribe()
     }
 
-    private fun showError() {
+    private fun showLoading() {
+        mainView.showLoading()
+    }
+
+    private fun hideLoading() {
+        mainView.hideLoading()
+    }
+
+    private fun showError(throwable: Throwable) {
         mainView.showError()
     }
 
@@ -30,11 +40,11 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
 
     private fun loadData() {
         if (repository.cachedList.isNotEmpty()) {
-            showCountries(repository.cachedList)
+            showResult(repository.cachedList)
         }
     }
 
-    private fun showCountries(result: List<Item>?) {
+    private fun showResult(result: List<Item>?) {
         if (result != null) {
             mainView.showCountries(result)
         }
