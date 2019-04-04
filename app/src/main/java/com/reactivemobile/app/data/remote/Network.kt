@@ -8,7 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class Network {
     object RetrofitFactory {
-        private const val baseUrl = "http://mysafeinfo.com"
+        private const val baseUrl = "http://10.0.2.2:8080"
 
         private val interceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         private val client = OkHttpClient.Builder().addInterceptor(interceptor).build()

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reactivemobile.app.App
 import com.reactivemobile.app.R
-import com.reactivemobile.app.data.model.Monarch
+import com.reactivemobile.app.data.model.Item
 
 import com.reactivemobile.app.ui.main.adapter.MainAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -55,7 +55,7 @@ class MainFragment : Fragment(), MainContract.View {
         recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
-    override fun showCountries(responseItems: List<Monarch>) {
+    override fun showCountries(responseItems: List<Item>) {
         recycler_view.adapter = MainAdapter(responseItems)
     }
 

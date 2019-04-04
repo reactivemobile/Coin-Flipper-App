@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.reactivemobile.app.R
-import com.reactivemobile.app.data.model.Monarch
+import com.reactivemobile.app.data.model.Item
 
-class MainAdapter(private val postList: List<Monarch>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+class MainAdapter(private val postList: List<Item>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val textView = LayoutInflater.from(parent.context).inflate(R.layout.main_list_item, parent, false)
         return MyViewHolder(textView)
@@ -19,7 +19,7 @@ class MainAdapter(private val postList: List<Monarch>) : RecyclerView.Adapter<Ma
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.setText(postList[position].nm)
+        holder.setText(postList[position].value)
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
