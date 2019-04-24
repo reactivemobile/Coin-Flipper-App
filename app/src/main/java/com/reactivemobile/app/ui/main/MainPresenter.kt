@@ -1,23 +1,40 @@
 package com.reactivemobile.app.ui.main
 
-import com.reactivemobile.app.data.model.Item
+import com.reactivemobile.app.data.model.Coin
 import com.reactivemobile.app.data.remote.Repository
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(private val repository: Repository) : MainContract.Presenter {
 
     private lateinit var mainView: MainContract.View
 
-    override fun handleButtonClicked(): Disposable? {
-        return repository
-            .fetch()
-            .subscribe(
-                this::showResult,
-                this::showError,
-                this::hideLoading,
-                this::showLoading
-            )
+    private var compositeDisposable = CompositeDisposable()
+
+    override fun fetchResults() {
+        compositeDisposable.add(
+            repository
+                .fetchOutcomes()
+                .subscribe(
+                    this::showOutcomes,
+                    this::showError,
+                    this::hideLoading,
+                    this::showLoading
+                )
+        )
+    }
+
+    override fun flipCoin() {
+        compositeDisposable.add(
+            repository
+                .flipCoin()
+                .subscribe(
+                    this::showFlipCoinResult,
+                    this::showError,
+                    this::hideLoading,
+                    this::showLoading
+                )
+        )
     }
 
     private fun showLoading(observable: Any) {
@@ -43,11 +60,19 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
 
     private fun loadData() {
         if (repository.cachedList.isNotEmpty()) {
-            showResult(repository.cachedList)
+            showOutcomes(repository.cachedList)
         }
     }
 
-    private fun showResult(result: List<Item>) {
-        mainView.showResult(result)
+    private fun showOutcomes(result: List<Coin>) {
+        mainView.showOutcomes(result)
+    }
+
+    private fun showFlipCoinResult(result: Coin) {
+        mainView.showCoinFlipResult(result)
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.dispose()
     }
 }

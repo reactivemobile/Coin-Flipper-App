@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.reactivemobile.app.R
-import com.reactivemobile.app.data.model.Item
+import com.reactivemobile.app.data.model.Coin
 
-class MainAdapter(private val postList: List<Item>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+class MainAdapter(private val postList: List<Coin>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val textView = LayoutInflater.from(parent.context).inflate(R.layout.main_list_item, parent, false)
         return MyViewHolder(textView)

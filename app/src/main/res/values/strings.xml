@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">White Label App</string>
-    <string name="fetch_posts">Outcomes</string>
+    <string name="outcomes">Outcomes</string>
+    <string name="flip_coin">Flip Coin</string>
 </resources>

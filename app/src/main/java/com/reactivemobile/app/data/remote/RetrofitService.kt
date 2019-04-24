@@ -1,10 +1,13 @@
 package com.reactivemobile.app.data.remote
 
-import com.reactivemobile.app.data.model.Item
+import com.reactivemobile.app.data.model.Coin
 import io.reactivex.Observable
 import retrofit2.http.GET
 
 interface RetrofitService {
     @GET("outcomes")
-    fun get(): Observable<List<Item>>
+    fun getOutcomes(): Observable<List<Coin>>
+
+    @GET("flip")
+    fun flipCoin(): Observable<Coin>
 }

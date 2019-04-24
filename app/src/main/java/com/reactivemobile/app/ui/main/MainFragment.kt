@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.reactivemobile.app.App
 import com.reactivemobile.app.R
-import com.reactivemobile.app.data.model.Item
+import com.reactivemobile.app.data.model.Coin
 import com.reactivemobile.app.ui.main.adapter.MainAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
@@ -43,15 +43,23 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     private fun setupView() {
-        button.setOnClickListener {
-            mainPresenter.handleButtonClicked()
+        fetch_outcomes.setOnClickListener {
+            mainPresenter.fetchResults()
+        }
+
+        flip_coin.setOnClickListener {
+            mainPresenter.flipCoin()
         }
 
         recycler_view.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
-    override fun showResult(responseItems: List<Item>) {
-        recycler_view.adapter = MainAdapter(responseItems)
+    override fun showOutcomes(responseCoins: List<Coin>) {
+        recycler_view.adapter = MainAdapter(responseCoins)
+    }
+
+    override fun showCoinFlipResult(result: Coin) {
+        Toast.makeText(context, "Outcome was ${result.face}", Toast.LENGTH_SHORT).show()
     }
 
     override fun showError() {
