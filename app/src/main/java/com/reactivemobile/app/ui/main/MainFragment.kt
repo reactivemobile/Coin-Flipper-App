@@ -7,9 +7,9 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.reactivemobile.app.App
 import com.reactivemobile.app.R
 import com.reactivemobile.app.data.model.Coin
@@ -59,11 +59,11 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showCoinFlipResult(result: Coin) {
-        Toast.makeText(context, "Outcome was ${result.face}", Toast.LENGTH_SHORT).show()
+        Snackbar.make(main_view, "Outcome was ${result.face}", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showError() {
-        Toast.makeText(context, "Error loading data", Toast.LENGTH_SHORT).show()
+        Snackbar.make(main_view, "Error loading data", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun showLoading() {

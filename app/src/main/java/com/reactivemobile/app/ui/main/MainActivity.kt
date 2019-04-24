@@ -12,7 +12,8 @@ class MainActivity : AppCompatActivity() {
         val fragment = MainFragment.newInstance()
         supportFragmentManager.transaction(allowStateLoss = true) {
             replace(
-                R.id.root_container, fragment,
+                R.id.root_container,
+                fragment,
                 MainFragment.TAG
             )
         }
