@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 
 class MainContract {
     interface View : BaseContract.View {
-        fun showCountries(responseItems: List<Item>)
+        fun showResult(responseItems: List<Item>)
         fun showError()
     }
 

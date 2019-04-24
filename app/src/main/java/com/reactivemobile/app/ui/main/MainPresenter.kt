@@ -7,18 +7,20 @@ import javax.inject.Inject
 
 class MainPresenter @Inject constructor(private val repository: Repository) : MainContract.Presenter {
 
-    lateinit var mainView: MainContract.View
+    private lateinit var mainView: MainContract.View
 
     override fun handleButtonClicked(): Disposable? {
-        return repository.fetch()
-            .onErrorReturn { emptyList() }
-            .doOnSubscribe { showLoading() }
-            .doOnComplete { hideLoading() }
-            .doOnNext(this::showResult)
-            .subscribe()
+        return repository
+            .fetch()
+            .subscribe(
+                this::showResult,
+                this::showError,
+                this::hideLoading,
+                this::showLoading
+            )
     }
 
-    private fun showLoading() {
+    private fun showLoading(observable: Any) {
         mainView.showLoading()
     }
 
@@ -26,7 +28,8 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
         mainView.hideLoading()
     }
 
-    private fun showError(throwable: Throwable) {
+    private fun showError(throwable: Throwable?) {
+        hideLoading()
         mainView.showError()
     }
 
@@ -44,9 +47,7 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
         }
     }
 
-    private fun showResult(result: List<Item>?) {
-        if (result != null) {
-            mainView.showCountries(result)
-        }
+    private fun showResult(result: List<Item>) {
+        mainView.showResult(result)
     }
 }
