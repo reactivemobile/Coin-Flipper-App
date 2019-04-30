@@ -7,7 +7,7 @@ import io.reactivex.schedulers.Schedulers
 
 class Repository {
     private val service = Network.RetrofitFactory.makeRetrofitService()
-    var cachedList: List<Coin> = emptyList()
+    var cachedList: MutableList<Coin> = mutableListOf()
 
     fun fetchOutcomes(): Observable<List<Coin>> {
         return service.getOutcomes()
@@ -19,12 +19,13 @@ class Repository {
     fun flipCoin(): Observable<Coin> {
         return service.flipCoin()
             .subscribeOn(Schedulers.io())
+            .doAfterNext { coin -> cachedList.add(coin) }
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun cacheList(list: List<Coin>?) {
         list.let {
-            cachedList = list!!
+            cachedList = ArrayList(list!!)
         }
     }
 }

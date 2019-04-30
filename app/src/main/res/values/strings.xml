@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">White Label App</string>
+    <string name="app_name">Coin Flipper</string>
     <string name="outcomes">Outcomes</string>
     <string name="flip_coin">Flip Coin</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="outcome">Outcome was %s</string>
 </resources>

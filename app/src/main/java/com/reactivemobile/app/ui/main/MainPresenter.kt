@@ -70,6 +70,7 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
 
     private fun showFlipCoinResult(result: Coin) {
         mainView.showCoinFlipResult(result)
+        loadData()
     }
 
     override fun onDestroy() {

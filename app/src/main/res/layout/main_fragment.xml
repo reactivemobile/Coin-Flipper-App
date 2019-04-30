@@ -10,21 +10,40 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:showDividers="middle|end"
+            android:divider="@drawable/divider"
             android:orientation="vertical"
             tools:context=".ui.main.MainFragment">
 
-        <Button android:id="@+id/fetch_outcomes" android:layout_gravity="center_horizontal"
-                android:text="@string/outcomes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        <TextView android:text="@string/app_name"
+                  style="@style/Headline"
+                  android:gravity="center_horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="@dimen/activity_horizontal_margin"/>
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      style="?android:attr/buttonBarStyle"
+                      android:layout_height="wrap_content">
 
-        <Button android:id="@+id/flip_coin" android:layout_gravity="center_horizontal"
-                android:text="@string/flip_coin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <Button android:id="@+id/fetch_outcomes"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/outcomes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            <Button android:id="@+id/flip_coin"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/flip_coin"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
                                                    android:id="@+id/recycler_view"

@@ -59,11 +59,11 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun showCoinFlipResult(result: Coin) {
-        Snackbar.make(main_view, "Outcome was ${result.face}", Snackbar.LENGTH_SHORT).show()
+        showMessage(getString(R.string.outcome, result.face))
     }
 
     override fun showError() {
-        Snackbar.make(main_view, "Error loading data", Snackbar.LENGTH_SHORT).show()
+        showMessage(getString(R.string.error_loading_data))
     }
 
     override fun showLoading() {
@@ -72,5 +72,14 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun hideLoading() {
         loading_view.visibility = GONE
+    }
+
+    override fun onDestroy() {
+        mainPresenter.onDestroy()
+        super.onDestroy()
+    }
+
+    private fun showMessage(message: String) {
+        Snackbar.make(main_view, message, Snackbar.LENGTH_SHORT).show()
     }
 }
