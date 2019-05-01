@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/reactivemobile/Coin-Flipper-App.svg?branch=master)](https://travis-ci.com/reactivemobile/Coin-Flipper-App)
+
 # Coin flipper app
 
 This is a demo app for the Kotlin [coin flipper back end.](https://github.com/reactivemobile/CoinFlipper)
