@@ -45,3 +45,4 @@ build/
 /.idea/vcs.xml
 /.idea/caches/
 /.idea/codeStyles/
+local.properties
