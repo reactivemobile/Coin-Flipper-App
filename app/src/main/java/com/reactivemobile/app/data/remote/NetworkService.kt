@@ -1,13 +1,13 @@
 package com.reactivemobile.app.data.remote
 
 import com.reactivemobile.app.data.model.Coin
-import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.GET
 
-interface RetrofitService {
+interface NetworkService {
     @GET("outcomes")
-    fun getOutcomes(): Observable<List<Coin>>
+    fun getOutcomes(): Single<List<Coin>>
 
     @GET("flip")
-    fun flipCoin(): Observable<Coin>
+    fun flipCoin(): Single<Coin>
 }

@@ -1,25 +1,26 @@
 package com.reactivemobile.app.data.remote
 
 import com.reactivemobile.app.data.model.Coin
-import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class Repository {
-    private val service = Network.RetrofitFactory.makeRetrofitService()
+class Repository @Inject constructor(private val service: NetworkService) {
+
     var cachedList: MutableList<Coin> = mutableListOf()
 
-    fun fetchOutcomes(): Observable<List<Coin>> {
+    fun fetchOutcomes(): Single<List<Coin>> {
         return service.getOutcomes()
             .subscribeOn(Schedulers.io())
-            .doAfterNext { list -> cacheList(list) }
+            .doAfterSuccess { list -> cacheList(list) }
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun flipCoin(): Observable<Coin> {
+    fun flipCoin(): Single<Coin> {
         return service.flipCoin()
+            .doAfterSuccess { coin -> cachedList.add(coin) }
             .subscribeOn(Schedulers.io())
-            .doAfterNext { coin -> cachedList.add(coin) }
             .observeOn(AndroidSchedulers.mainThread())
     }
 

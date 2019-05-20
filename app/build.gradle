@@ -25,8 +25,8 @@ android {
 }
 
 ext {
-    androidx_appcompat_version = "1.1.0-alpha04"
-    androidx_ktx_version = "1.1.0-alpha05"
+    androidx_appcompat_version = "1.1.0-alpha05"
+    androidx_ktx_version = "1.2.0-alpha01"
     androidx_fragment_version = "1.0.0"
     rxjava2_version = "2.0.2"
     retrofit2_version = "2.5.0"
@@ -38,6 +38,8 @@ ext {
     androidx_espresso_version = "3.2.0-alpha02"
     recyclerview_version = "28.0.0"
     okhttp_logging_interceptor_version = "3.12.1"
+    androidx_test_version = "1.1.0"
+    mockito_version = "2.27.0"
 }
 
 dependencies {
@@ -58,6 +60,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test:runner:$androidx_test_runner_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
+    testImplementation "androidx.test:core:$androidx_test_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
 }

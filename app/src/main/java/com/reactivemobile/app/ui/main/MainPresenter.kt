@@ -3,9 +3,8 @@ package com.reactivemobile.app.ui.main
 import com.reactivemobile.app.data.model.Coin
 import com.reactivemobile.app.data.remote.Repository
 import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Inject
 
-class MainPresenter @Inject constructor(private val repository: Repository) : MainContract.Presenter {
+class MainPresenter(private val repository: Repository) : MainContract.Presenter {
 
     private lateinit var mainView: MainContract.View
 
@@ -17,9 +16,7 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
                 .fetchOutcomes()
                 .subscribe(
                     this::showOutcomes,
-                    this::showError,
-                    this::hideLoading,
-                    this::showLoading
+                    this::showError
                 )
         )
     }
@@ -30,14 +27,12 @@ class MainPresenter @Inject constructor(private val repository: Repository) : Ma
                 .flipCoin()
                 .subscribe(
                     this::showFlipCoinResult,
-                    this::showError,
-                    this::hideLoading,
-                    this::showLoading
+                    this::showError
                 )
         )
     }
 
-    private fun showLoading(observable: Any) {
+    private fun showLoading() {
         mainView.showLoading()
     }
 
