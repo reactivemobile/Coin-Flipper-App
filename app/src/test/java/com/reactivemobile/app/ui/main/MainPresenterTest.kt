@@ -25,7 +25,7 @@ class MainPresenterTest {
     @Before
     fun setUp() {
         `when`(repository.flipCoin()).thenReturn(Single.just(Coin("heads")))
-        `when`(repository.fetchOutcomes()).thenReturn(Single.just(ArrayList()))
+        `when`(repository.fetchOutcomes()).thenReturn(Single.just(listOf(Coin("tails"))))
 
         mainPresenter = MainPresenter(repository)
         mainPresenter.attach(mainView)
@@ -35,6 +35,7 @@ class MainPresenterTest {
     fun fetchResults() {
         mainPresenter.fetchResults()
 
+        verify(mainView).showLoading()
         verify(repository).fetchOutcomes()
     }
 
@@ -42,6 +43,7 @@ class MainPresenterTest {
     fun flipCoin_withSuccessfulFlip_updatesUi() {
         mainPresenter.flipCoin()
 
+        verify(mainView).showLoading()
         verify(repository).flipCoin()
     }
 }

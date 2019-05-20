@@ -12,36 +12,20 @@ class MainPresenter(private val repository: Repository) : MainContract.Presenter
 
     override fun fetchResults() {
         compositeDisposable.add(
-            repository
-                .fetchOutcomes()
-                .subscribe(
-                    this::showOutcomes,
-                    this::showError
-                )
+            handleLoading(mainView, repository.fetchOutcomes())
+                .subscribe(this::showOutcomes, this::showError)
         )
     }
 
     override fun flipCoin() {
         compositeDisposable.add(
-            repository
-                .flipCoin()
-                .subscribe(
-                    this::showFlipCoinResult,
-                    this::showError
-                )
+            handleLoading(mainView, repository.flipCoin())
+                .subscribe(this::showFlipCoinResult, this::showError)
         )
     }
 
-    private fun showLoading() {
-        mainView.showLoading()
-    }
-
-    private fun hideLoading() {
-        mainView.hideLoading()
-    }
-
     private fun showError(throwable: Throwable?) {
-        hideLoading()
+        mainView.hideLoading();
         mainView.showError()
     }
 
