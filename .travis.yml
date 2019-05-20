@@ -13,7 +13,7 @@ android:
   - android-28
 
 script:
-- ./gradlew build check
+-  ./gradlew testDevUnitTest
 
 before_install:
 - chmod +x gradlew
